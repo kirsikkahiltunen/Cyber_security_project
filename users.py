@@ -58,6 +58,7 @@ def register(username, password1):
                     VALUES (:username, :password)""")
     #'''
     db.session.execute(sql, {"username": username, "password": password1})
+    print(password1)
     #'''
     '''
     db.session.execute(sql, {"username": username, "password": password_hash})
