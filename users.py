@@ -56,7 +56,12 @@ def register(username, password1):
     #password_hash = generate_password_hash(password1)
     sql = text("""INSERT INTO users (username, password) 
                     VALUES (:username, :password)""")
+    #'''
     db.session.execute(sql, {"username": username, "password": password1})
+    #'''
+    '''
+    db.session.execute(sql, {"username": username, "password": password_hash})
+    '''
     db.session.commit()
 
     return login(username, password1)
