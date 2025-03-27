@@ -19,9 +19,9 @@ def login(username, password):
 
     user = result.fetchone()
 
+    #'''
     if not user:
         return False
-    #'''
     else:
         if password==user.password:
             print("Salasana oikein")
@@ -35,6 +35,8 @@ def login(username, password):
             return False
     #'''
     '''
+    if not user:
+        return False
     else:
         hash_value = user.password
         if check_password_hash(hash_value, password):
@@ -53,16 +55,16 @@ def logout():
 
 
 def register(username, password1):
-    #password_hash = generate_password_hash(password1)
+    password_hash = generate_password_hash(password1)
     sql = text("""INSERT INTO users (username, password) 
                     VALUES (:username, :password)""")
-    #'''
+    '''
     db.session.execute(sql, {"username": username, "password": password1})
     print(password1)
-    #'''
-    #db.session.execute(sql, {"username": username, "password": password_hash})
+    '''
+    db.session.execute(sql, {"username": username, "password": password_hash})
     db.session.commit()
-
+    
     return login(username, password1)
 
 '''
