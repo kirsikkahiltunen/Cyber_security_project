@@ -60,9 +60,7 @@ def register(username, password1):
     db.session.execute(sql, {"username": username, "password": password1})
     print(password1)
     #'''
-    '''
-    db.session.execute(sql, {"username": username, "password": password_hash})
-    '''
+    #db.session.execute(sql, {"username": username, "password": password_hash})
     db.session.commit()
 
     return login(username, password1)
