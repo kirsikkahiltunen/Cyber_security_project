@@ -61,7 +61,7 @@ def register(username, password1):
 
     return login(username, password1)
 
-
+'''
 def valid_password(password):
     special_characters = """!@#$%&*/()[]-_=+}?';,:.<>\``~^{"""
     lower = 0
@@ -88,7 +88,7 @@ def valid_password(password):
         return True
 
     return False
-
+'''
 
 def username_already_exists(username):
     sql = text("SELECT* FROM users WHERE username=:username")
