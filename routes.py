@@ -60,10 +60,10 @@ def register():
                 if users.register(username, password1):
                     return redirect("/")
                 else:
-                    return render_template("register.html", error=True, message="Password must be longer than 8 characters and include at least one lowercase letter, one uppercase letter, one number, and one special character", username=username, password1=password1, password2=password2)
+                    return render_template("register.html", error=True, message="Password must include at least one lowercase letter, one uppercase letter, one number, and one special character", username=username, password1=password1, password2=password2)
 
             else:
-                return render_template("register.html", error=True, message="Password must be longer than 8 characters and include at least one lowercase letter, one uppercase letter, one number, and one special character", username=username, password1=password1, password2=password2)
+                return render_template("register.html", error=True, message="Password must include at least one lowercase letter, one uppercase letter, one number, and one special character", username=username, password1=password1, password2=password2)
             '''
         else:
             return render_template("register.html", error=True, message="Passwords do not match", username=username, password1=password1, password2=password2)
@@ -91,7 +91,7 @@ def create_event():
         now = datetime.now()
         formated_now = now.strftime("%Y-%m-%dT%H:%M")
         if event_date_time < formated_now:
-            return render_template("create_event.html", error=True, message="Tapahtuman ajankohta ei voi olla menneisyydessä", event_name=event_name, description=event_description)
+            return render_template("create_event.html", error=True, message="The date cannot be in the past", event_name=event_name, description=event_description)
         events.create_event(user_id, username, event_name,
                             event_date_time, event_category, event_description)
         return redirect("/")
@@ -109,7 +109,7 @@ def create_event():
             now = datetime.now()
             formated_now = now.strftime("%Y-%m-%dT%H:%M")
             if event_date_time < formated_now:
-                return render_template("create_event.html", error=True, message="Tapahtuman ajankohta ei voi olla menneisyydessä", event_name=event_name, description=event_description)
+                return render_template("create_event.html", error=True, message="The date cannot be in the past", event_name=event_name, description=event_description)
             events.create_event(user_id, username, event_name,
                                 event_date_time, event_category, event_description)
             return redirect("/")
